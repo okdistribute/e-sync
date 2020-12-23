@@ -26,7 +26,7 @@ The `type` record is a byte that defines the type of connection that should be
 created (e.g., webrtc, tcp, udp).
 
 |type | byte | 
----------------
+-------|-------
 | tcp | 0x01 |
 | udp | 0x02 |
 | http | 0x03 |
