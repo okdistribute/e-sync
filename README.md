@@ -14,9 +14,9 @@ An e-sync protocol begins when one e-mail **provider** is able to send an **end-
 
 ## 1.2 Handshake
 
-E-sync uses two e-mail messages to establish a handshake between two e-mail addresses. The initiator sends the first message, which is a payload that includes a unique 32-byte token as well as a connection payload that includes the IP address, port, and connection type. To prevent eavesdropping by third parties on these payloads, it is recommended to send this first e-mail is sent as an end-to-end encrypted message. 
+The receiver and initiator will have a challenge over a pre-shared symmetric key which SHOULD be shared out-of-band. This prevents attacks where a private key has been compromised a MITM is attempting to hijack the direct connection between the two devices.
 
-The receiver and initiator will have a challenge over a pre-shared symmetric key which must be shared out-of-band. This prevents attacks where a private key has been compromised a MITM is attempting to hijack the direct connection between the two devices.
+E-sync uses two e-mail messages to establish a handshake between two e-mail addresses. The initiator sends the first message, which is a payload that includes  a hash of the pre-shared symmetric key, an ephemeral token, as well as a connection payload that includes the IP address, port, and acceptable connection types. To prevent eavesdropping by third parties on these payloads, it is recommended that the handshake e-mails are sent as end-to-end encrypted messages. 
 
 ## 2. Message format
 
