@@ -1,22 +1,22 @@
 # e-sync
 
-A framework for upgrading from e-mail to a direct peer connection. Protocols that use e-sync can be interactive or could consist of only a single message for peer discovery.
+A framework for upgrading from an e-mail exchange to a secure peer-to-peer connection. Protocols that use e-sync can be interactive or could consist of only a single message to bootstrap peer discovery. 
 
 ## 1. Overview
 
-E-mail is the most widely adopted decentralized protocol in the world, and it's popularity is expected to grow in 2033[1]. E-mail was designed and deployed in 1971, and naturally has several limitations that restrict it's usage for wider data-intensive usage. 
+E-mail is the most widely adopted decentralized protocol in the world, and it's popularity is expected to grow in 2033[1]. E-mail was designed and deployed in 1971, and naturally has several limitations that restrict it's usage for wider data-intensive usage. E-sync leverages this existing e-mail network to discover devices and establish a secure connection between them. 
 
 [1] [Email is not dead.](https://emailisnotdead.com)
 
 ## 1.1 Terminology
 
-An e-sync protocol begins when one e-mail **provider** is able to send an **end-to-end encrypted message** over SMTP to another e-mail address. This first message includes a **handshake payload** which includes necessary metadata to upgrade the connection to a direct connection.
+An e-sync protocol begins when one e-mail **provider** is able to send an **end-to-end encrypted message** over SMTP to another e-mail address. This first message includes a **handshake payload** which includes necessary metadata to begin a secure peer-to-peer connection.
 
 ## 1.2 Handshake
 
-The receiver and initiator will have a challenge over a pre-shared symmetric key which SHOULD be shared out-of-band. This prevents attacks where a private key has been compromised a MITM is attempting to hijack the direct connection between the two devices.
+Both devices MUST possess a pre-shared symmetric key which they SHOULD share out-of-band. This prevents attacks where a MITM is attempting to hijack the handshake.
 
-E-sync uses two e-mail messages to establish a handshake between two e-mail addresses. The initiator sends the first message, which is a payload that includes  a hash of the pre-shared symmetric key, an ephemeral token, as well as a connection payload that includes the IP address, port, and acceptable connection types. To prevent eavesdropping by third parties on these payloads, it is recommended that the handshake e-mails are sent as end-to-end encrypted messages. 
+The initiator sends the first message, which is a payload that includes a hash of the pre-shared symmetric key, an ephemeral token, and an addressable location that includes the IP address, port, and acceptable connection types. To prevent eavesdropping by third parties on these payloads, it is recommended that the handshake e-mails are sent as end-to-end encrypted messages. 
 
 ## 2. Message format
 
@@ -44,7 +44,7 @@ The discovery key is a hash of the pre-shared symmetric key. It should be a 32-b
 
 #### `location`
 
-The `location` record is an IP address and port.
+The `location` record is an ip address or domain name and a port.
 
 ## 3. Connection
 
