@@ -23,7 +23,7 @@ The initiator sends the first message, which is a payload that includes a hash o
 #### `type` 
 
 The `type` record is a byte that defines the type of connection that should be
-created (e.g., webrtc, tcp, udp).
+created.
 
 |type | byte | 
 -------|-------
