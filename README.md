@@ -20,31 +20,24 @@ The initiator sends the first message, which is a payload that includes a hash o
 
 ## 2. Message format
 
-#### `type` 
-
-The `type` record is a byte that defines the type of connection that should be
-created.
-
-|type | byte | 
--------|-------
-| tcp | 0x01 |
-| udp | 0x02 |
-| http | 0x03 |
-| ftp | 0x04 |
-
 #### `token`
 
-The `token` record is a random value that makes it easier for clients to avoid
-connecting to themselves. If a client sees a response with the same token as
-a response they just sent out, they will know it came from them and ignore it. 
+This record is a random value, also called a "magic cookie," which makes it easier for clients to avoid
+connecting to themselves. In practice, if a client sees a response with the same token as
+a request they just sent out, the application could opportunistically ignore it. 
 
 #### `discovery key`
 
 The discovery key is a hash of the pre-shared symmetric key. It should be a 32-byte buffer encoded as hex.
 
-#### `location`
+#### `uri`
 
-The `location` record is an ip address or domain name and a port.
+The `uri` record is a valid URI.
+
+```
+URI = scheme:[//[userinfo@]host[:port]]path[?query][#fragment]
+``` 
+
 
 ## 3. Connection
 
