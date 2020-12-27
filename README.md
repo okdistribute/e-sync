@@ -14,9 +14,9 @@ An e-sync protocol begins when one e-mail **provider** is able to send an **end-
 
 ## 1.2 Handshake
 
-Both devices MUST possess a pre-shared symmetric key which they SHOULD share out-of-band. This prevents attacks where a MITM is attempting to hijack the handshake.
+Both devices MUST possess a pre-shared symmetric key which they SHOULD share out-of-band. This prevents attacks where a MITM is attempting to hijack the connection.
 
-The initiator sends the first message, which is a payload that includes a hash of the pre-shared symmetric key, an ephemeral token, and an addressable location that includes the IP address, port, and acceptable connection types. To prevent eavesdropping by third parties on these payloads, it is recommended that the handshake e-mails are sent as end-to-end encrypted messages. 
+The initiator sends the first message, which is a payload that includes a hash of the pre-shared symmetric key, an ephemeral token, and an addressable location that includes an IP address, port, and an acceptable connection type formatted as a URI. To prevent eavesdropping by third parties on these payloads, it is recommended that the handshake e-mails are sent as end-to-end encrypted messages. 
 
 ## 2. Message format
 
